@@ -260,6 +260,23 @@ textarea,input,select{font-family:var(--sans);}
 .pill-off{background:linear-gradient(135deg,#7a2020,#b03030);color:#fff;box-shadow:0 4px 16px rgba(176,48,48,.3);}
 
 .cdesc{font-size:17px;font-weight:600;color:var(--gold-l);line-height:1.5;margin-bottom:18px;white-space:pre-line;}
+.cdesc-alert{
+  white-space:normal!important;
+  background:linear-gradient(135deg,rgba(180,40,40,.25),rgba(220,80,40,.15));
+  border:1.5px solid rgba(255,100,80,.45);
+  border-radius:14px;padding:16px 18px;
+  animation:alertpulse 1.2s ease-in-out infinite;
+}
+@keyframes alertpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,100,80,.0);}50%{box-shadow:0 0 0 6px rgba(255,100,80,.2);}}
+.alert-top{font-size:13px;font-weight:700;color:#ff8870;margin-bottom:8px;letter-spacing:.2px;}
+.alert-count{
+  font-size:52px;font-weight:800;color:#fff;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:2px;
+  text-shadow:0 0 24px rgba(255,120,80,.5);
+  margin-bottom:10px;
+}
+.alert-next{font-size:13px;font-weight:600;color:var(--text);opacity:.85;}
+.alert-next strong{color:var(--gold-l);}
 
 .irow{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(201,149,42,.07);}
 .irow:last-child{border-bottom:none;}
@@ -932,11 +949,57 @@ const weekendGreetings=[
 ];
 const scheduleData={
   hari:{
-    "Senin":{seragam:"OSIS",jadwal:[{jam:"07:00-07:40",kegiatan:"Upacara"},{jam:"07:40-07:50",kegiatan:"Briefing"},{jam:"07:50-09:00",mapel:"MTK",guru:"Sukma"},{jam:"09:00-09:35",mapel:"B.IND",guru:"Endra"},{jam:"09:35-09:50",kegiatan:"Istirahat"},{jam:"09:50-10:25",mapel:"B.IND",guru:"Endra"},{jam:"10:25-11:35",mapel:"DPK",guru:"Udin"},{jam:"11:35-12:20",kegiatan:"Ishoma"},{jam:"12:20-12:55",mapel:"DPK",guru:"Udin"},{jam:"12:55-14:05",mapel:"INF",guru:"Nur"},{jam:"14:05-14:20",kegiatan:"Istirahat"},{jam:"14:20-15:30",mapel:"SB",guru:"Faris"}],piket:["Yahya","Azmi","Novi","Sofia","Nanda","Nunik","Reni"]},
-    "Selasa":{seragam:"Identitas",jadwal:[{jam:"07:00-07:15",kegiatan:"Tadarus AQ"},{jam:"07:15-08:25",mapel:"MTK",guru:"Sukma"},{jam:"08:25-09:35",mapel:"IPAS",guru:"Septi"},{jam:"09:35-09:50",kegiatan:"Istirahat"},{jam:"09:50-11:00",mapel:"KKA",guru:"Yuli"},{jam:"11:00-11:35",mapel:"B.ING",guru:"Fifin"},{jam:"11:35-12:20",kegiatan:"Ishoma"},{jam:"12:20-12:55",mapel:"B.ING",guru:"Fifin"},{jam:"12:55-14:05",mapel:"BJ",guru:"Dhianis"},{jam:"14:05-14:20",kegiatan:"Istirahat"},{jam:"14:20-15:30",mapel:"SI",guru:"Sonef"}],piket:["Auladi","Arka","Raa","Fitri","Mutia","Keysa","Zahra"]},
-    "Rabu":{seragam:"Batik",jadwal:[{jam:"07:00-07:15",kegiatan:"Tadarus AQ"},{jam:"07:15-09:00",mapel:"PABP",guru:"Yani"},{jam:"09:00-09:35",mapel:"INF",guru:"Nur"},{jam:"09:35-09:50",kegiatan:"Istirahat"},{jam:"09:50-10:25",mapel:"INF",guru:"Nur"},{jam:"10:25-11:35",mapel:"DPK",guru:"Udin"},{jam:"11:35-12:20",kegiatan:"Ishoma"},{jam:"12:20-12:55",mapel:"DPK",guru:"Udin"},{jam:"12:55-14:05",mapel:"IPAS",guru:"Septi"},{kegiatan:"Eskul Pilihan"}],piket:["Gibran","Bayu","Selva","Yumna","Chika","Tasya","Olifia"]},
-    "Kamis":{seragam:"OSIS",jadwal:[{jam:"07:00-07:15",kegiatan:"Senam"},{jam:"07:15-08:25",mapel:"IPAS",guru:"Septi"},{jam:"08:25-09:35",mapel:"PPKN",guru:"Firman"},{jam:"09:35-09:50",kegiatan:"Istirahat"},{jam:"09:50-11:00",mapel:"B.ING",guru:"Fifin"},{jam:"11:00-11:35",mapel:"B.IND",guru:"Endra"},{jam:"11:35-12:20",kegiatan:"Ishoma"},{jam:"12:20-12:55",mapel:"B.IND",guru:"Endra"},{jam:"12:55-13:30",mapel:"BK",guru:"Ida"},{jam:"13:30-14:05",mapel:"DPK",guru:"Nur"},{jam:"14:05-14:20",kegiatan:"Istirahat"},{jam:"14:20-15:30",mapel:"DPK",guru:"Nur"}],piket:["Feriza","Galih","Alya","Aini","Cata","Muza","Cipta"]},
-    "Jumat":{seragam:"Pramuka",jadwal:[{jam:"07:00-07:30",kegiatan:"Mujahadah"},{jam:"07:30-09:15",mapel:"PJOK",guru:"Bagas"},{jam:"09:15-09:30",kegiatan:"Istirahat"},{jam:"09:30-11:15",mapel:"DPK",guru:"Nur"},{jam:"11:15-11:30",kegiatan:"Istirahat"},{jam:"11:30-12:15",kegiatan:"Keputrian"},{jam:"12:15-12:30",kegiatan:"Istirahat"},{kegiatan:"Eskul Pramuka (2 minggu sekali)"}],piket:["Fais","Latifa","Ayuk","Fitri","Lia","Felisa"]}
+    "Senin":{seragam:"OSIS",jadwal:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-08:15",kegiatan:"Upacara"},
+      {jam:"08:15-09:15",mapel:"MTK",guru:"Sukma"},
+      {jam:"09:15-09:45",mapel:"B.INDO",guru:"Endra"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-10:30",mapel:"B.INDO",guru:"Endra"},
+      {jam:"10:30-12:00",mapel:"DPK",guru:"Udin"},
+      {jam:"12:00-12:45",kegiatan:"Ishoma"},
+      {jam:"12:45-13:45",mapel:"INF",guru:"Nur"},
+      {jam:"13:45-14:45",mapel:"SB",guru:"Faris"}
+    ],piket:["Yahya","Azmi","Novi","Sofia","Nanda","Nunik","Reni"]},
+    "Selasa":{seragam:"Identitas",jadwal:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-08:45",mapel:"MTK",guru:"Sukma"},
+      {jam:"08:45-09:45",mapel:"IPAS",guru:"Septi"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-11:00",mapel:"KKA",guru:"Yuli"},
+      {jam:"11:00-12:00",mapel:"B.ING",guru:"Fifin"},
+      {jam:"12:00-12:45",kegiatan:"Ishoma"},
+      {jam:"12:45-13:45",mapel:"B.JAWA",guru:"Dhianis"},
+      {jam:"13:45-14:45",mapel:"SI",guru:"Sonef"}
+    ],piket:["Auladi","Arka","Raa","Fitri","Mutia","Keysa","Zahra"]},
+    "Rabu":{seragam:"Batik",jadwal:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-09:15",mapel:"PABP",guru:"Yani"},
+      {jam:"09:15-09:45",mapel:"INF",guru:"Nur"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-10:30",mapel:"INF",guru:"Nur"},
+      {jam:"10:30-12:00",mapel:"B.ING",guru:"Fifin"},
+      {jam:"12:00-12:45",kegiatan:"Ishoma"},
+      {jam:"12:45-13:45",mapel:"IPAS",guru:"Septi"}
+    ],piket:["Gibran","Bayu","Selva","Yumna","Chika","Tasya","Olifia"]},
+    "Kamis":{seragam:"OSIS",jadwal:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-08:45",mapel:"IPAS",guru:"Septi"},
+      {jam:"08:45-09:45",mapel:"PPKN",guru:"Firman"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-11:00",mapel:"B.ING",guru:"Fifin"},
+      {jam:"11:00-12:00",mapel:"B.IND",guru:"Endra"},
+      {jam:"12:00-12:45",kegiatan:"Ishoma"},
+      {jam:"12:45-13:15",mapel:"BK",guru:"Ida"},
+      {jam:"13:15-14:45",mapel:"DPK",guru:"Nur"}
+    ],piket:["Feriza","Galih","Alya","Aini","Cata","Muza","Cipta"]},
+    "Jumat":{seragam:"Pramuka",jadwal:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-09:15",mapel:"PJOK",guru:"Bagas"},
+      {jam:"09:15-09:45",mapel:"DPK",guru:"Nur"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-11:00",mapel:"DPK",guru:"Nur"}
+    ],piket:["Fais","Latifa","Ayuk","Fitri","Lia","Felisa"]}
   }
 };
 const students=["Aini Kamila","Alya Fatimatus Zahra","Aprilia Dwi Anggraini","Arkan Praditya","Aulady Syahputra","Ayuk Rizka Nur Azizah","Bayu Dwi Prasetiyo","Chatarina Rosalinda","Chika Berlian Adinillah","Ciptaning Tri Rahayu","Dwi Fitriani","Elyahya Dwi Hanafi","Fais Akbar Rosyaidi","Faridhatuz Zahra","Felisa Nur Aini","Feriza Assyaddad","Fitri Nur Hayati","Friescha Aura Rizky","Gibran Muhamad Riadi","Keisya Putri Az-Zahra","Latifah Dwi Magnal Hayah","Lisa Mutia Asih","Muhammad Galih Adi P.","Muhammad Tsabitul Azmi","Muzaemah","Nanda Rahma Dewi Quraisyin","Natasya Khoirunnisa","Novita Sari","Nunik Riskiyana","Olifia Ramadhani","Reni Amelia Fatmawati","Selfana Nur Afni","Sofia khusna","Zhafira Yumna Artanti"];
@@ -1009,12 +1072,30 @@ function updateClock(){
 // ============================================================
 // HOME PAGE
 // ============================================================
+function getNextItem(jadwal,curIdx){
+  for(let i=curIdx+1;i<jadwal.length;i++){if(jadwal[i].jam)return jadwal[i];}
+  return null;
+}
+function getNextLabel(item){
+  if(!item)return null;
+  if(item.mapel)return item.mapel;
+  if(item.kegiatan){
+    if(item.kegiatan.includes('Istirahat'))return '☕ Istirahat';
+    if(item.kegiatan.includes('Ishoma'))return '🕌 Ishoma';
+    return item.kegiatan;
+  }
+  return null;
+}
+
 function updateHome(){
-  const now=new Date(),dn=dayNames[now.getDay()],cur=now.getHours()*60+now.getMinutes();
+  const now=new Date(),dn=dayNames[now.getDay()];
+  const cur=now.getHours()*60+now.getMinutes();
+  const curSec=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
   const pill=document.getElementById('statusPill');
   const desc=document.getElementById('cdesc');
   if(dn==='Sabtu'||dn==='Minggu'){
     pill.textContent='🌙 Libur';pill.className='status-pill pill-off';
+    desc.classList.remove('cdesc-alert');desc.innerHTML='';
     desc.textContent=weekendGreetings[Math.floor(Math.random()*weekendGreetings.length)];
     ['iSeragam','iMapel','iPiket','iPulang'].forEach(id=>document.getElementById(id).textContent='-');
     return;
@@ -1024,30 +1105,47 @@ function updateHome(){
   if(!day)return;
   document.getElementById('iSeragam').textContent=day.seragam;
   document.getElementById('iPiket').textContent=day.piket.join(', ');
-  const endT=dn==='Jumat'?11*60+30:dn==='Rabu'?14*60+5:15*60+30;
+  const endT=dn==='Jumat'?11*60:dn==='Rabu'?13*60+45:14*60+45;
   const rem=endT-cur;
   document.getElementById('iPulang').textContent=cur<endT?(rem>=60?`⏰ ${Math.floor(rem/60)} jam ${rem%60} mnt lagi`:`⏰ ${rem} menit lagi`):(dn==='Rabu'?'🎨 Waktu ekskul':'🎉 Sudah pulang');
   const subjects=[...new Set(day.jadwal.filter(i=>i.mapel).map(i=>i.mapel))];
   document.getElementById('iMapel').textContent=subjects.join(', ')||'-';
   let found=false;
-  for(const item of day.jadwal){
+  for(let idx=0;idx<day.jadwal.length;idx++){
+    const item=day.jadwal[idx];
     if(!item.jam)continue;
     const[st,en]=item.jam.split('-');
     const[sh,sm]=st.split(':').map(Number),[eh,em]=en.split(':').map(Number);
     const s2=sh*60+sm,e2=eh*60+em;
+    const e2Sec=eh*3600+em*60;
     if(cur>=s2&&cur<e2){
       found=true;
-      const r2=e2-cur,rh=Math.floor(r2/60),rm=r2%60;
-      const rt=rh>0?`${rh}j ${rm}m`:`${rm}m`;
-      if(item.kegiatan){
-        if(item.kegiatan.includes('Istirahat')){desc.textContent=`☕ Istirahat (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
-        else if(item.kegiatan.includes('Ishoma')){desc.textContent=`🕌 Ishoma (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
-        else desc.textContent=`📋 ${item.kegiatan}`;
-      }else if(item.mapel){desc.textContent=`📚 ${item.mapel} — sisa ${rt}`;}
+      const remSec=e2Sec-curSec;
+      const rh=Math.floor(remSec/3600),rm=Math.floor((remSec%3600)/60),rs=remSec%60;
+      const rt=rh>0?`${rh}j ${rm}m ${rs}d`:(rm>0?`${rm}m ${rs}d`:`${rs}d`);
+      const next=getNextItem(day.jadwal,idx);
+      const nextLabel=getNextLabel(next);
+      if(remSec<=300&&remSec>0){
+        // ALERT MODE — ≤5 menit
+        desc.classList.add('cdesc-alert');
+        const minOnly=Math.floor(remSec/60),secOnly=remSec%60;
+        const countStr=`${String(minOnly).padStart(2,'0')}:${String(secOnly).padStart(2,'0')}`;
+        const curLabel=item.mapel?`📚 ${item.mapel}`:(item.kegiatan?.includes('Istirahat')?'☕ Istirahat':item.kegiatan?.includes('Ishoma')?'🕌 Ishoma':`📋 ${item.kegiatan}`);
+        desc.innerHTML=`<div class="alert-top">⚠️ ${curLabel} hampir selesai!</div><div class="alert-count">${countStr}</div>${nextLabel?`<div class="alert-next">➡️ Selanjutnya: <strong>${nextLabel}</strong></div>`:''}`;
+      } else {
+        // NORMAL MODE
+        desc.classList.remove('cdesc-alert');desc.innerHTML='';
+        if(item.kegiatan){
+          if(item.kegiatan.includes('Istirahat')){desc.textContent=`☕ Istirahat (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
+          else if(item.kegiatan.includes('Ishoma')){desc.textContent=`🕌 Ishoma (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
+          else desc.textContent=`📋 ${item.kegiatan}`;
+        }else if(item.mapel){desc.textContent=`📚 ${item.mapel} — sisa ${rt}`;}
+      }
       break;
     }
   }
   if(!found){
+    desc.classList.remove('cdesc-alert');desc.innerHTML='';
     if(cur<7*60)desc.textContent='🌅 Sekolah belum dimulai. Semangat puasanya! 🌙';
     else if(cur>=endT)desc.textContent='🎉 Alhamdulillah, sudah pulang! Jangan lupa buka puasa ya~ 🌙';
     else desc.textContent='⏳ Menunggu jadwal berikutnya...';
@@ -1219,7 +1317,7 @@ function init(){
   fetchPT();
   setInterval(fetchPT,6*60*60*1000);
   setInterval(()=>{updateClock();updateCountdown();},1000);
-  setInterval(updateHome,60000);
+  setInterval(updateHome,1000);
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
