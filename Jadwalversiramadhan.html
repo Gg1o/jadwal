@@ -211,19 +211,51 @@ textarea,input,select{font-family:var(--sans);}
   background:linear-gradient(135deg,rgba(13,110,110,.4),rgba(6,13,28,.85));
   border:1px solid var(--border);border-radius:var(--r-lg);
   padding:18px 20px;text-align:center;position:relative;overflow:hidden;
+  transition:background .6s,border-color .6s;
 }
 .hero::before{
   content:'';position:absolute;inset:0;border-radius:var(--r-lg);
   background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20v-3h-2v3h-3v2h3v3h2v-3h3v-2h-3zM4 4V1H2v3H-1v2h3v3h2V6h3V4H4z' fill='%23c9952a' fill-opacity='.04'/%3E%3C/svg%3E");
 }
-.hero-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold-l);margin-bottom:4px;}
+/* ALERT mode — ≤5 menit sebelum waktu sholat */
+.hero.hero-alert{
+  background:linear-gradient(135deg,rgba(13,80,80,.5),rgba(201,120,20,.25),rgba(6,13,28,.9));
+  border-color:rgba(240,160,40,.6);
+  animation:heroPulse 1s ease-in-out infinite;
+}
+@keyframes heroPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(240,160,40,.0),inset 0 0 0 0 rgba(240,160,40,.0);}
+  50%{box-shadow:0 0 18px 6px rgba(240,160,40,.18),inset 0 0 30px 0 rgba(240,160,40,.06);}
+}
+.hero.hero-alert .hero-label{color:#fbbf24;letter-spacing:3px;}
+.hero.hero-alert .hero-time{color:#fbbf24;text-shadow:0 0 32px rgba(251,191,36,.5);}
+.hero.hero-alert .hero-arabic{color:#fde68a;}
+/* BUKA mode — saat waktu berbuka */
+.hero.hero-buka{
+  background:linear-gradient(135deg,rgba(120,60,5,.5),rgba(201,149,42,.4),rgba(6,13,28,.8));
+  border-color:rgba(240,192,96,.7);
+  animation:bukaPulse 1.8s ease-in-out infinite;
+}
+@keyframes bukaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(240,192,96,.0),inset 0 0 0 0 rgba(240,192,96,.0);}
+  50%{box-shadow:0 0 28px 10px rgba(240,192,96,.2),inset 0 0 40px 0 rgba(240,192,96,.07);}
+}
+.hero.hero-buka .hero-label{color:#f0c060;font-size:13px;letter-spacing:3px;animation:labelGlow 2s ease-in-out infinite;}
+@keyframes labelGlow{0%,100%{opacity:.85;}50%{opacity:1;text-shadow:0 0 12px rgba(240,192,96,.6);}}
+.hero.hero-buka .hero-time{color:#f0c060;font-size:52px;text-shadow:0 0 40px rgba(240,192,96,.6),0 0 80px rgba(240,192,96,.2);}
+.hero.hero-buka .hero-arabic{font-size:30px;color:#fde68a;text-shadow:0 0 20px rgba(240,192,96,.3);}
+.hero.hero-buka .hero-sub{color:#e5c87a;font-size:13px;font-weight:600;}
+.hero-sub-next{font-size:10px;color:var(--muted);margin-top:3px;opacity:.8;}
+.hero-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold-l);margin-bottom:4px;transition:color .4s;}
 .hero-arabic{font-family:var(--serif);font-size:24px;color:#fff;margin-bottom:4px;}
-.hero-time{font-size:46px;font-weight:800;color:var(--gold-l);line-height:1;font-variant-numeric:tabular-nums;text-shadow:0 0 28px rgba(240,192,96,.3);}
+.hero-time{font-size:46px;font-weight:800;color:var(--gold-l);line-height:1;font-variant-numeric:tabular-nums;text-shadow:0 0 28px rgba(240,192,96,.3);transition:color .4s,text-shadow .4s;}
 .hero-sub{font-size:12px;color:var(--muted);margin-top:6px;}
 @media(min-width:900px){
   .hero{margin:18px 32px;padding:26px 40px;}
   .hero-time{font-size:58px;}
+  .hero.hero-buka .hero-time{font-size:64px;}
   .hero-arabic{font-size:28px;}
+  .hero.hero-buka .hero-arabic{font-size:32px;}
 }
 
 /* ============================================================
@@ -262,20 +294,23 @@ textarea,input,select{font-family:var(--sans);}
 .cdesc{font-size:17px;font-weight:600;color:var(--gold-l);line-height:1.5;margin-bottom:18px;white-space:pre-line;}
 .cdesc-alert{
   white-space:normal!important;
-  background:linear-gradient(135deg,rgba(180,40,40,.25),rgba(220,80,40,.15));
-  border:1.5px solid rgba(255,100,80,.45);
+  background:linear-gradient(135deg,rgba(13,80,80,.35),rgba(201,149,42,.18),rgba(6,13,28,.6));
+  border:1.5px solid rgba(240,160,40,.5);
   border-radius:14px;padding:16px 18px;
-  animation:alertpulse 1.2s ease-in-out infinite;
+  animation:alertpulse 1s ease-in-out infinite;
 }
-@keyframes alertpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,100,80,.0);}50%{box-shadow:0 0 0 6px rgba(255,100,80,.2);}}
-.alert-top{font-size:13px;font-weight:700;color:#ff8870;margin-bottom:8px;letter-spacing:.2px;}
+@keyframes alertpulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(240,160,40,.0),inset 0 0 0 0 rgba(240,160,40,.0);}
+  50%{box-shadow:0 0 16px 4px rgba(240,160,40,.15),inset 0 0 24px 0 rgba(240,160,40,.05);}
+}
+.alert-top{font-size:12px;font-weight:700;color:#fbbf24;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;}
 .alert-count{
-  font-size:52px;font-weight:800;color:#fff;line-height:1;
+  font-size:52px;font-weight:800;color:#fde68a;line-height:1;
   font-variant-numeric:tabular-nums;letter-spacing:2px;
-  text-shadow:0 0 24px rgba(255,120,80,.5);
+  text-shadow:0 0 28px rgba(251,191,36,.5),0 0 60px rgba(251,191,36,.15);
   margin-bottom:10px;
 }
-.alert-next{font-size:13px;font-weight:600;color:var(--text);opacity:.85;}
+.alert-next{font-size:12px;font-weight:600;color:var(--text);opacity:.85;}
 .alert-next strong{color:var(--gold-l);}
 
 .irow{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(201,149,42,.07);}
@@ -617,36 +652,37 @@ textarea,input,select{font-family:var(--sans);}
 
 <!-- PRAYER STRIP -->
 <div class="prayer-strip">
-  <div class="pi" data-p="sahur"><div class="pi-n">🌙 Sahur</div><div class="pi-t">04:02</div></div>
-  <div class="pi" data-p="subuh"><div class="pi-n">Subuh</div><div class="pi-t">04:12</div></div>
-  <div class="pi" data-p="dzuhur"><div class="pi-n">Dzuhur</div><div class="pi-t">11:51</div></div>
-  <div class="pi" data-p="ashar"><div class="pi-n">Ashar</div><div class="pi-t">15:08</div></div>
-  <div class="pi" data-p="maghrib"><div class="pi-n">🌅 Buka</div><div class="pi-t">17:52</div></div>
-  <div class="pi" data-p="isya"><div class="pi-n">Isya</div><div class="pi-t">19:02</div></div>
+  <div class="pi" data-p="sahur"><div class="pi-n" id="pn-sahur">🌙 Sahur</div><div class="pi-t" id="pt-sahur">04:02</div></div>
+  <div class="pi" data-p="subuh"><div class="pi-n" id="pn-subuh">Subuh</div><div class="pi-t" id="pt-subuh">04:12</div></div>
+  <div class="pi" data-p="dzuhur"><div class="pi-n" id="pn-dzuhur">Dzuhur</div><div class="pi-t" id="pt-dzuhur">11:51</div></div>
+  <div class="pi" data-p="ashar"><div class="pi-n" id="pn-ashar">Ashar</div><div class="pi-t" id="pt-ashar">15:08</div></div>
+  <div class="pi" data-p="maghrib"><div class="pi-n" id="pn-maghrib">🌅 Buka</div><div class="pi-t" id="pt-maghrib">17:52</div></div>
+  <div class="pi" data-p="isya"><div class="pi-n" id="pn-isya">Isya & Tarawih</div><div class="pi-t" id="pt-isya">19:02</div></div>
 </div>
 
 <!-- ======= HOME ======= -->
 <div class="page active" id="homePage">
-  <div class="hero">
+  <div class="hero" id="heroBox">
     <div class="hero-label" id="rcLabel">Menghitung...</div>
     <div class="hero-arabic" id="rcTitle">رمضان كريم</div>
     <div class="hero-time" id="rcTime">--:--:--</div>
     <div class="hero-sub" id="rcSub">Semangat puasanya! 🌙</div>
+    <div class="hero-sub-next" id="rcNext"></div>
   </div>
   <div class="banner">
     <span class="banner-ar">رمضان كريم</span>
     <span class="banner-tr">Marhaban ya Ramadhan — Selamat berpuasa, X SIJA! ✨</span>
   </div>
   <div class="wrap">
-    <h1 class="ptitle">Ada Apa <span>Hari Ini?</span></h1>
+    <h1 class="ptitle" id="homeTitle">Ada Apa <span>Hari Ini?</span></h1>
     <div class="status-pill pill-school" id="statusPill">Sekolah</div>
     <div class="home-grid">
       <div class="card">
         <div class="cdesc" id="cdesc">Loading...</div>
-        <div class="irow"><div class="ilabel">Seragam</div><div class="ival" id="iSeragam">-</div></div>
-        <div class="irow"><div class="ilabel">Mapel</div><div class="ival" id="iMapel">-</div></div>
-        <div class="irow"><div class="ilabel">Piket</div><div class="ival" id="iPiket">-</div></div>
-        <div class="irow"><div class="ilabel">Pulang</div><div class="ival" id="iPulang">-</div></div>
+        <div class="irow"><div class="ilabel" id="lSeragam">Seragam</div><div class="ival" id="iSeragam">-</div></div>
+        <div class="irow"><div class="ilabel" id="lMapel">Mapel</div><div class="ival" id="iMapel">-</div></div>
+        <div class="irow"><div class="ilabel" id="lPiket">Piket</div><div class="ival" id="iPiket">-</div></div>
+        <div class="irow"><div class="ilabel" id="lPulang">Pulang</div><div class="ival" id="iPulang">-</div></div>
       </div>
     </div>
   </div>
@@ -711,7 +747,7 @@ textarea,input,select{font-family:var(--sans);}
     <div class="ai-grid">
       <div class="ai-card gpt">
         <div class="ai-head">
-          <div class="ai-logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494z" fill="#fff"/></svg></div>
+          <div class="ai-logo"><svg width="28" height="28" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.650-2.983 10.079 10.079 0 0 0-9.618 6.977 9.967 9.967 0 0 0-6.650 4.834 10.079 10.079 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.650 2.983 10.079 10.079 0 0 0 9.618-6.978 9.967 9.967 0 0 0 6.65-4.833 10.079 10.079 0 0 0-1.24-11.818zm-14.777 20.737a7.473 7.473 0 0 1-4.799-1.735l.238-.13 7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.218zm-16.107-6.870a7.471 7.471 0 0 1-.894-5.023l.239.144 7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.242-2.747zm-2.09-17.496a7.47 7.47 0 0 1 3.908-3.285V19.350a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.400a7.504 7.504 0 0 1-.486-10.160zm27.556 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.130zm3.35-5.043l-.239-.144-7.964-4.600a1.298 1.298 0 0 0-1.308 0L19.527 19.426v-3.888a.12.12 0 0 1 .048-.103l8.051-4.648a7.498 7.498 0 0 1 11.135 7.769zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756l-.238.130-7.965 4.600a1.294 1.294 0 0 0-.654 1.132l-.004 11.229zm1.829-3.943l4.33-2.501 4.332 2.498v4.996l-4.331 2.501-4.331-2.498V17.621z" fill="white"/></svg></div>
           <div><div class="ai-platname">ChatGPT</div><div class="ai-platsub">by OpenAI · GPT-4o</div></div>
           <div class="ai-badge">Gratis</div>
         </div>
@@ -721,7 +757,7 @@ textarea,input,select{font-family:var(--sans);}
       </div>
       <div class="ai-card cld">
         <div class="ai-head">
-          <div class="ai-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="#fff" opacity=".2"/><path d="M8.5 16.5l3-9 3 9M10 13.5h3" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ai-logo" style="background:#cc785c;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.304 4.294c-1.458-1.892-3.71-3.107-6.244-3.107-4.354 0-7.883 3.529-7.883 7.882 0 .461.04.912.117 1.35C1.48 11.148 0 13.18 0 15.56c0 3.148 2.552 5.7 5.7 5.7h12.6c3.148 0 5.7-2.552 5.7-5.7 0-2.243-1.298-4.19-3.194-5.15.042-.38.064-.766.064-1.157 0-2.033-.65-3.915-1.566-4.959z" fill="white" opacity="0.9"/></svg></div>
           <div><div class="ai-platname">Claude</div><div class="ai-platsub">by Anthropic · Sonnet</div></div>
           <div class="ai-badge">Gratis</div>
         </div>
@@ -731,7 +767,7 @@ textarea,input,select{font-family:var(--sans);}
       </div>
       <div class="ai-card gem">
         <div class="ai-head">
-          <div class="ai-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" fill="url(#gg)"/><defs><linearGradient id="gg" x1="2" y1="2" x2="22" y2="22"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#9B72CB"/><stop offset="100%" stop-color="#EA4335"/></linearGradient></defs></svg></div>
+          <div class="ai-logo" style="background:linear-gradient(135deg,#1a73e8,#9334e6);"><svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg></div>
           <div><div class="ai-platname">Gemini</div><div class="ai-platsub">by Google · 2.0 Flash</div></div>
           <div class="ai-badge">Gratis</div>
         </div>
@@ -940,6 +976,13 @@ const quotes=[
   "Ramadhan momen terbaik untuk jadi versi terbaikmu. 🌟",
   "Berbuka dengan yang manis, belajar dengan yang serius! 😄"
 ];
+const besokGreetings=[
+  "🌙 Istirahat dulu, besok semangat lagi!",
+  "✨ Malam ini waktunya belajar & tadarus, besok siap tempur!",
+  "🌟 Besok ada sekolah, jangan begadang ya~",
+  "📚 Persiapkan dirimu untuk hari esok yang lebih baik!",
+  "🕌 Setelah tarawih, istirahat cukup biar besok semangat!"
+];
 const weekendGreetings=[
   "🌙 Selamat menikmati akhir pekan Ramadhan! Jangan lupa tadarus ya~",
   "☪️ Weekend Ramadhan = waktu terbaik untuk ibadah dan istirahat!",
@@ -960,6 +1003,16 @@ const scheduleData={
       {jam:"12:00-12:45",kegiatan:"Ishoma"},
       {jam:"12:45-13:45",mapel:"INF",guru:"Nur"},
       {jam:"13:45-14:45",mapel:"SB",guru:"Faris"}
+    ],jadwalB:[
+      {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
+      {jam:"07:45-08:45",mapel:"MTK",guru:"Sukma"},
+      {jam:"08:45-09:45",mapel:"B.INDO",guru:"Endra"},
+      {jam:"09:45-10:00",kegiatan:"Istirahat"},
+      {jam:"10:00-11:30",mapel:"DPK",guru:"Udin"},
+      {jam:"11:30-12:00",mapel:"INF",guru:"Nur"},
+      {jam:"12:00-12:45",kegiatan:"Ishoma"},
+      {jam:"12:45-13:15",mapel:"INF",guru:"Nur"},
+      {jam:"13:15-14:15",mapel:"SB",guru:"Faris"}
     ],piket:["Yahya","Azmi","Novi","Sofia","Nanda","Nunik","Reni"]},
     "Selasa":{seragam:"Identitas",jadwal:[
       {jam:"07:30-07:45",kegiatan:"Tadarus AQ"},
@@ -978,7 +1031,7 @@ const scheduleData={
       {jam:"09:15-09:45",mapel:"INF",guru:"Nur"},
       {jam:"09:45-10:00",kegiatan:"Istirahat"},
       {jam:"10:00-10:30",mapel:"INF",guru:"Nur"},
-      {jam:"10:30-12:00",mapel:"B.ING",guru:"Fifin"},
+      {jam:"10:30-12:00",mapel:"DPK",guru:"Udin"},
       {jam:"12:00-12:45",kegiatan:"Ishoma"},
       {jam:"12:45-13:45",mapel:"IPAS",guru:"Septi"}
     ],piket:["Gibran","Bayu","Selva","Yumna","Chika","Tasya","Olifia"]},
@@ -1029,35 +1082,75 @@ async function fetchPT(){
 }
 
 function updatePrayerStrip(){
-  document.querySelectorAll('.pi').forEach((el,i)=>{
-    const p=PT[PT_KEYS[i]];
-    const tEl=el.querySelector('.pi-t');
+  const isFriday=new Date().getDay()===5;
+  PT_KEYS.forEach(k=>{
+    const p=PT[k];
+    const tEl=document.getElementById('pt-'+k);
+    const nEl=document.getElementById('pn-'+k);
     if(tEl)tEl.textContent=`${String(p.h).padStart(2,'0')}:${String(p.m).padStart(2,'0')}`;
+    if(nEl){
+      if(k==='dzuhur')nEl.textContent=isFriday?'🕌 Jumat':'Dzuhur';
+      else if(k==='isya')nEl.textContent='🕌 Isya & Tarawih';
+    }
   });
 }
 
 function updateCountdown(){
   const now=new Date();
   const sec=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
-  const sub=toSec(PT.subuh),mag=toSec(PT.maghrib),sah=toSec(PT.sahur),isy=toSec(PT.isya);
+  const isFriday=now.getDay()===5;
+  const sah=toSec(PT.sahur),sub=toSec(PT.subuh),dzu=toSec(PT.dzuhur),ash=toSec(PT.ashar),mag=toSec(PT.maghrib),isy=toSec(PT.isya);
   let label,arabic,rem,sub2;
-  if(sec<sah){rem=sah-sec;label='🌙 Waktu Sahur';arabic='مَرْحَباً بِرَمَضَان';sub2='Siap-siap sahur ya!';}
-  else if(sec<sub){rem=sub-sec;label='⏰ Imsak & Subuh';arabic='وَقْتُ السَّحُور';sub2='Segera selesaikan sahur! 🍚';}
-  else if(sec<mag){rem=mag-sec;label='🌅 Menuju Buka Puasa';arabic='صَبْرٌ جَمِيل';sub2='Sabar ya, sebentar lagi berbuka! 🥤';}
-  else if(sec<isy){rem=isy-sec;label='🎉 Waktu Buka Puasa!';arabic='أَفْطِرْ بِسُرُور';sub2='Alhamdulillah, selamat berbuka! 🌙';}
-  else{rem=(86400-sec)+sah;label='🕌 Waktu Tarawih';arabic='صَلَاةُ التَّرَاوِيح';sub2='Yuk sholat tarawih! ✨';}
+  if(sec<sah){
+    rem=sah-sec;label='🌙 Menuju Sahur';arabic='مَرْحَباً بِرَمَضَان';sub2='Siap-siap sahur ya! 🍚';
+  } else if(sec<sub){
+    rem=sub-sec;label='⏰ Imsak & Subuh';arabic='وَقْتُ السَّحُور';sub2='Segera selesaikan sahur! 🍚';
+  } else if(sec<dzu){
+    rem=dzu-sec;
+    label=isFriday?'🕌 Menuju Sholat Jumat':'🌤️ Menuju Dzuhur';
+    arabic=isFriday?'صَلَاةُ الجُمُعَة':'صَلَاةُ الظُّهْر';
+    sub2=isFriday?'Jangan sampai telat Jumat-an ya! 🕌':'Semangat puasanya! ☀️';
+  } else if(sec<ash){
+    rem=ash-sec;
+    label=isFriday?'🕌 Waktu Sholat Jumat':'✅ Waktu Dzuhur';
+    arabic=isFriday?'صَلَاةُ الجُمُعَة':'الظُّهْرُ حَانَ';
+    sub2=isFriday?'Yuk segera ke masjid! 🕌':'Waktunya sholat Dzuhur! 🙏';
+  } else if(sec<mag){
+    rem=mag-sec;label='🌅 Menuju Buka Puasa';arabic='صَبْرٌ جَمِيل';sub2='Sabar ya, sebentar lagi berbuka! 🥤';
+  } else if(sec<isy){
+    rem=isy-sec;label='✨ Waktu Berbuka ✨';arabic='أَفْطِرْ بِسُرُور';sub2='Alhamdulillah, selamat berbuka puasa! 🌙🍽️';
+  } else {
+    rem=(86400-sec)+sah;label='🕌 Isya & Tarawih';arabic='صَلَاةُ التَّرَاوِيح';sub2='Yuk sholat Isya & Tarawih! ✨';
+  }
   const h=Math.floor(rem/3600),m=Math.floor((rem%3600)/60),s=rem%60;
-  document.getElementById('rcLabel').textContent=label;
+  // Detect alert mode (≤5 menit sebelum waktu sholat berikutnya)
+  const isBuka=(sec>=mag&&sec<isy);
+  const isAlert=!isBuka&&rem<=300&&rem>0;
+  const hero=document.getElementById('heroBox');
+  hero.classList.toggle('hero-alert',isAlert);
+  hero.classList.toggle('hero-buka',isBuka);
+  // Label prefix saat alert
+  const alertPrefix=isAlert?'🔔 ':''
+  document.getElementById('rcLabel').textContent=alertPrefix+label;
   document.getElementById('rcTitle').textContent=arabic;
   document.getElementById('rcTime').textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   document.getElementById('rcSub').textContent=sub2;
+  // Next prayer hint saat alert
+  const nextEl=document.getElementById('rcNext');
+  if(isAlert){nextEl.textContent='🌙 Segera bersiap, waktunya tiba!';}
+  else if(isBuka){nextEl.textContent='Setelah buka → Isya & Tarawih 🕌';}
+  else{nextEl.textContent='';}
   // active prayer highlight
   const cur=now.getHours()*60+now.getMinutes();
   document.querySelectorAll('.pi').forEach((el,i)=>{
     el.classList.remove('active');
-    const p=PT[PT_KEYS[i]],nxt=PT_KEYS[i+1]?PT[PT_KEYS[i+1]]:null;
+    const key=PT_KEYS[i];
+    const p=PT[key];
+    const nxtKey=PT_KEYS[i+1];
+    const nxt=nxtKey?PT[nxtKey]:null;
     if(cur>=toMin(p)&&(!nxt||cur<toMin(nxt)))el.classList.add('active');
   });
+  updatePrayerStrip();
 }
 
 // ============================================================
@@ -1087,32 +1180,102 @@ function getNextLabel(item){
   return null;
 }
 
+let _cachedBesokMsg='';let _cachedBesokDay='';
+let _cachedQuote='';let _cachedQuoteKey='';
+let _cachedWeekendMsg='';let _cachedWeekendDay='';
+
+function getActiveJadwal(dayName){
+  const data=scheduleData.hari[dayName];
+  if(!data) return null;
+  if(dayName==='Senin'&&data.jadwalB){
+    return senin_mode==='no_upacara'?data.jadwalB:data.jadwal;
+  }
+  return data.jadwal;
+}
+
+function getBesokDay(dn){
+  const idx=dayNames.indexOf(dn);
+  // Skip weekend: if today fri → besok sabtu (libur) → show senin
+  // Actually just get next school day
+  let next=(idx+1)%7;
+  while(dayNames[next]==='Sabtu'||dayNames[next]==='Minggu') next=(next+1)%7;
+  return dayNames[next];
+}
+
 function updateHome(){
   const now=new Date(),dn=dayNames[now.getDay()];
   const cur=now.getHours()*60+now.getMinutes();
   const curSec=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
   const pill=document.getElementById('statusPill');
   const desc=document.getElementById('cdesc');
+  const title=document.getElementById('homeTitle');
+
+  // Helper: reset labels to hari ini
+  function setLabelsHariIni(){
+    document.getElementById('lSeragam').textContent='Seragam';
+    document.getElementById('lMapel').textContent='Mapel';
+    document.getElementById('lPiket').textContent='Piket';
+    document.getElementById('lPulang').textContent='Pulang';
+    if(title) title.innerHTML='Ada Apa <span>Hari Ini?</span>';
+  }
+  // Helper: set labels to besok mode
+  function setLabelsBesok(besokDn){
+    document.getElementById('lSeragam').textContent='Seragam Besok';
+    document.getElementById('lMapel').textContent='Mapel Besok';
+    document.getElementById('lPiket').textContent='Piket Besok';
+    document.getElementById('lPulang').textContent='Pulang Besok';
+    if(title) title.innerHTML=`Persiapan <span>${besokDn}</span>`;
+  }
+
+  // WEEKEND
   if(dn==='Sabtu'||dn==='Minggu'){
     pill.textContent='🌙 Libur';pill.className='status-pill pill-off';
     desc.classList.remove('cdesc-alert');desc.innerHTML='';
-    desc.textContent=weekendGreetings[Math.floor(Math.random()*weekendGreetings.length)];
+    setLabelsHariIni();
+    if(title) title.innerHTML='Selamat <span>Libur!</span>';
+    if(_cachedWeekendDay!==dn){_cachedWeekendDay=dn;_cachedWeekendMsg=weekendGreetings[Math.floor(Math.random()*weekendGreetings.length)];}
+    desc.textContent=_cachedWeekendMsg;
     ['iSeragam','iMapel','iPiket','iPulang'].forEach(id=>document.getElementById(id).textContent='-');
     return;
   }
+
+  // After 19:00 → switch to BESOK mode
+  const isBesokMode = cur >= 15*60 && cur < 24*60;
+  const activeDay = isBesokMode ? getBesokDay(dn) : dn;
+  const day = scheduleData.hari[activeDay];
+  if(!day) return;
+
+  if(isBesokMode){
+    setLabelsBesok(activeDay);
+    pill.textContent=`📅 Besok: ${activeDay}`;pill.className='status-pill pill-school';
+    if(_cachedBesokDay!==activeDay){_cachedBesokDay=activeDay;_cachedBesokMsg=besokGreetings[Math.floor(Math.random()*besokGreetings.length)];}
+    desc.classList.remove('cdesc-alert');desc.innerHTML='';
+    desc.textContent=_cachedBesokMsg;
+    const jadwalBesok=getActiveJadwal(activeDay);
+    const subjects=[...new Set(jadwalBesok.filter(i=>i.mapel).map(i=>i.mapel))];
+    document.getElementById('iSeragam').textContent=day.seragam;
+    document.getElementById('iMapel').textContent=subjects.join(', ')||'-';
+    document.getElementById('iPiket').textContent=day.piket.join(', ');
+    const endBesok=activeDay==='Jumat'?11*60:activeDay==='Rabu'?13*60+45:14*60+45;
+    const endHour=Math.floor(endBesok/60),endMin=endBesok%60;
+    document.getElementById('iPulang').textContent=`🏠 ${String(endHour).padStart(2,'0')}:${String(endMin).padStart(2,'0')}`;
+    return;
+  }
+
+  // HARI INI mode
+  setLabelsHariIni();
   pill.textContent='📚 Sekolah';pill.className='status-pill pill-school';
-  const day=scheduleData.hari[dn];
-  if(!day)return;
   document.getElementById('iSeragam').textContent=day.seragam;
   document.getElementById('iPiket').textContent=day.piket.join(', ');
   const endT=dn==='Jumat'?11*60:dn==='Rabu'?13*60+45:14*60+45;
   const rem=endT-cur;
   document.getElementById('iPulang').textContent=cur<endT?(rem>=60?`⏰ ${Math.floor(rem/60)} jam ${rem%60} mnt lagi`:`⏰ ${rem} menit lagi`):(dn==='Rabu'?'🎨 Waktu ekskul':'🎉 Sudah pulang');
-  const subjects=[...new Set(day.jadwal.filter(i=>i.mapel).map(i=>i.mapel))];
+  const activeJadwal=getActiveJadwal(dn);
+  const subjects=[...new Set(activeJadwal.filter(i=>i.mapel).map(i=>i.mapel))];
   document.getElementById('iMapel').textContent=subjects.join(', ')||'-';
   let found=false;
-  for(let idx=0;idx<day.jadwal.length;idx++){
-    const item=day.jadwal[idx];
+  for(let idx=0;idx<activeJadwal.length;idx++){
+    const item=activeJadwal[idx];
     if(!item.jam)continue;
     const[st,en]=item.jam.split('-');
     const[sh,sm]=st.split(':').map(Number),[eh,em]=en.split(':').map(Number);
@@ -1123,21 +1286,21 @@ function updateHome(){
       const remSec=e2Sec-curSec;
       const rh=Math.floor(remSec/3600),rm=Math.floor((remSec%3600)/60),rs=remSec%60;
       const rt=rh>0?`${rh}j ${rm}m ${rs}d`:(rm>0?`${rm}m ${rs}d`:`${rs}d`);
-      const next=getNextItem(day.jadwal,idx);
+      const next=getNextItem(activeJadwal,idx);
       const nextLabel=getNextLabel(next);
       if(remSec<=300&&remSec>0){
-        // ALERT MODE — ≤5 menit
         desc.classList.add('cdesc-alert');
         const minOnly=Math.floor(remSec/60),secOnly=remSec%60;
         const countStr=`${String(minOnly).padStart(2,'0')}:${String(secOnly).padStart(2,'0')}`;
         const curLabel=item.mapel?`📚 ${item.mapel}`:(item.kegiatan?.includes('Istirahat')?'☕ Istirahat':item.kegiatan?.includes('Ishoma')?'🕌 Ishoma':`📋 ${item.kegiatan}`);
-        desc.innerHTML=`<div class="alert-top">⚠️ ${curLabel} hampir selesai!</div><div class="alert-count">${countStr}</div>${nextLabel?`<div class="alert-next">➡️ Selanjutnya: <strong>${nextLabel}</strong></div>`:''}`;
+        desc.innerHTML=`<div class="alert-top">🔔 ${curLabel} hampir selesai!</div><div class="alert-count">${countStr}</div>${nextLabel?`<div class="alert-next">🌙 Selanjutnya: <strong>${nextLabel}</strong></div>`:''}`;
       } else {
-        // NORMAL MODE
         desc.classList.remove('cdesc-alert');desc.innerHTML='';
         if(item.kegiatan){
-          if(item.kegiatan.includes('Istirahat')){desc.textContent=`☕ Istirahat (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
-          else if(item.kegiatan.includes('Ishoma')){desc.textContent=`🕌 Ishoma (${rt})\n\n💡 ${quotes[Math.floor(Math.random()*quotes.length)]}`;}
+          const qKey=item.jam||item.kegiatan;
+          if(_cachedQuoteKey!==qKey){_cachedQuoteKey=qKey;_cachedQuote=quotes[Math.floor(Math.random()*quotes.length)];}
+          if(item.kegiatan.includes('Istirahat')){desc.textContent=`☕ Istirahat (${rt})\n\n💡 ${_cachedQuote}`;}
+          else if(item.kegiatan.includes('Ishoma')){desc.textContent=`🕌 Ishoma (${rt})\n\n💡 ${_cachedQuote}`;}
           else desc.textContent=`📋 ${item.kegiatan}`;
         }else if(item.mapel){desc.textContent=`📚 ${item.mapel} — sisa ${rt}`;}
       }
@@ -1155,15 +1318,38 @@ function updateHome(){
 // ============================================================
 // CALENDAR
 // ============================================================
+function renderJadwalItems(jadwal){
+  let html='';
+  jadwal.forEach(item=>{
+    if(item.mapel){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.mapel}</div><div class="les-g">Guru: ${item.guru}</div></div>`;}
+    else if(item.kegiatan){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.kegiatan.includes('Ishoma')?'\u{1F54C} ':item.kegiatan.includes('Istirahat')?'\u{2615} ':''}${item.kegiatan}</div></div>`;}
+  });
+  return html;
+}
+let senin_mode='upacara';
+function toggleSeninMode(){
+  senin_mode=senin_mode==='upacara'?'no_upacara':'upacara';
+  const data=scheduleData.hari['Senin'];
+  const jadwal=senin_mode==='upacara'?data.jadwal:data.jadwalB;
+  const btn=document.getElementById('senin-toggle-btn');
+  if(btn){btn.textContent=senin_mode==='upacara'?'\u{1F3F3}\uFE0F Ada Upacara':'\u{1F4CB} Tanpa Upacara';}
+  const body=document.getElementById('senin-jadwal-body');
+  if(body){body.innerHTML=renderJadwalItems(jadwal);}
+}
 function initCalendar(){
   const grid=document.getElementById('schedGrid');grid.innerHTML='';
   Object.entries(scheduleData.hari).forEach(([day,data])=>{
     const card=document.createElement('div');card.className='day-card';card.id='day-'+day;
     let html=`<div class="day-head"><div class="day-name">${day}</div><div class="unif-badge">${data.seragam}</div></div>`;
-    data.jadwal.forEach(item=>{
-      if(item.mapel){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.mapel}</div><div class="les-g">Guru: ${item.guru}</div></div>`;}
-      else if(item.kegiatan){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.kegiatan.includes('Ishoma')?'🕌 ':item.kegiatan.includes('Istirahat')?'☕ ':''}${item.kegiatan}</div></div>`;}
-    });
+    if(day==='Senin'&&data.jadwalB){
+      html+=`<div style="margin-bottom:10px;"><button id="senin-toggle-btn" onclick="toggleSeninMode()" style="background:linear-gradient(135deg,var(--teal),var(--teal-l));border:none;border-radius:20px;color:#fff;font-size:10px;font-weight:700;padding:5px 14px;cursor:pointer;width:100%;">\u{1F3F3}\uFE0F Ada Upacara</button></div>`;
+      html+=`<div id="senin-jadwal-body">${renderJadwalItems(data.jadwal)}</div>`;
+    } else {
+      data.jadwal.forEach(item=>{
+        if(item.mapel){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.mapel}</div><div class="les-g">Guru: ${item.guru}</div></div>`;}
+        else if(item.kegiatan){html+=`<div class="les"><div class="les-t">${item.jam||''}</div><div class="les-n">${item.kegiatan.includes('Ishoma')?'\u{1F54C} ':item.kegiatan.includes('Istirahat')?'\u{2615} ':''}${item.kegiatan}</div></div>`;}
+      });
+    }
     card.innerHTML=html;grid.appendChild(card);
   });
 }
